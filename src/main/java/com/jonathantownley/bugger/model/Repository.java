@@ -1,15 +1,28 @@
 package com.jonathantownley.bugger.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Repository {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String description;
+    private String databaseFileLocation;
 
-    public Repository(Long id, String name, String description) {
-        this.id = id;
+    // Default constructor for JPA
+    public Repository() {}
+
+    public Repository(String name, String description, String databaseFileLocation) {
         this.name = name;
         this.description = description;
+        this.databaseFileLocation = databaseFileLocation;
     }
 
     public Long getId() {
@@ -34,5 +47,13 @@ public class Repository {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDatabaseFileLocation() {
+        return databaseFileLocation;
+    }
+
+    public void setDatabaseFileLocation(String databaseFileLocation) {
+        this.databaseFileLocation = databaseFileLocation;
     }
 }

@@ -10,18 +10,17 @@ public class Bug {
     private Author author;
     private String title;
     private String description;
-    private Repository repository;
+    private String repositoryName;
     private Product product;
     private List<Note> notes;
     private Stage stage;
 
-    public Bug(Long id, Date date, Author author, String title, String description, Repository repository, Product product, List<Note> notes, Stage stage) {
-        this.id = id;
+    public Bug(Date date, Author author, String title, String description, String repositoryName, Product product, List<Note> notes, Stage stage) {
         this.date = date;
         this.author = author;
         this.title = title;
         this.description = description;
-        this.repository = repository;
+        this.repositoryName = repositoryName;
         this.product = product;
         this.notes = notes;
         this.stage = stage;
@@ -67,12 +66,12 @@ public class Bug {
         this.description = description;
     }
 
-    public Repository getRepo() {
-        return repository;
+    public String getRepo() {
+        return repositoryName;
     }
 
-    public void setRepo(Repository repository) {
-        this.repository = repository;
+    public void setRepo(String repositoryName) {
+        this.repositoryName = repositoryName;
     }
 
     public Product getProduct() {
