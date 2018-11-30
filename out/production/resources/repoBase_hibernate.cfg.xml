@@ -1,0 +1,15 @@
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection setting -->
+        <property name="connection.driver_class">org.h2.Driver</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- Update the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Names the annotated entity classes -->
+        <mapping class="com.jonathantownley.bugger.model.Repository" />
+    </session-factory>
+</hibernate-configuration>

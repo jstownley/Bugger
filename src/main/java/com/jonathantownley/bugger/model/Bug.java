@@ -1,19 +1,35 @@
 package com.jonathantownley.bugger.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Bug {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Date date;
+
+    @ManyToOne
     private Author author;
     private String title;
     private String description;
     private String repositoryName;
+
+    @ManyToOne
     private Product product;
+
+    @OneToMany
     private List<Note> notes;
+
+    @ManyToOne
     private Stage stage;
+
+    // Default constructor for JPA
+    public Bug() {}
 
     public Bug(Date date, Author author, String title, String description, String repositoryName, Product product, List<Note> notes, Stage stage) {
         this.date = date;

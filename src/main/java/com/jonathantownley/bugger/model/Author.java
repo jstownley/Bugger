@@ -1,14 +1,25 @@
 package com.jonathantownley.bugger.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
     private String lastName;
     private String nickName;
 
-    public Author(Long id, String firstName, String lastName, String nickName) {
-        this.id = id;
+    // Default constructor for JPA
+    public Author() {}
+
+    public Author(String firstName, String lastName, String nickName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;

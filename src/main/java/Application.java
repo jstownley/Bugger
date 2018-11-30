@@ -1,19 +1,25 @@
-import com.jonathantownley.bugger.model.Repository;
-import org.hibernate.Criteria;
+import com.jonathantownley.bugger.model.*;
+import com.jonathantownley.bugger.service.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
 
 public class Application {
 
-    // Hold a reusable reference to the Repository SessionFactory
+    // Hold reusable references to the Repository SessionFactory and services
     private static final SessionFactory repoSessionFactory = buildSessionFactory();
+    private static final AuthorService authorService = new AuthorServiceImpl();
+    public static final BugService bugService = new BugServiceImpl();
+    public static final NoteService noteService = new NoteServiceImpl();
+    public static final ProductService productService = new ProductServiceImpl();
+    public static final RepositoryService repositoryService = new RepositoryServiceImpl();
+    public static final StageService stageService = new StageServiceImpl();
 
     private static SessionFactory buildSessionFactory(){
         // Create a StandardServiceRegistery
@@ -22,105 +28,85 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        // Create database for test repos (only need to do this once)
-//        save(new Repository("testRepo1",
-//            "Test repository 1",
-//            "./data/testRepo1/testRepo1.mv.db"));
-//
-//        save(new Repository("testRepo2",
-//            "Test repository 2",
-//            "./data/testRepo2/testRepo2.mv.db"));
+        createTestDatabasesIfTheyDontExist();
 
-        // Get list of repositories
-        List<Repository> repositories = fetchAllRepositories();
-        Map<String, Repository> repositoryMap = new HashMap<>();
+        Map<String, Repository> repositoryMap = new TreeMap<>();
+        Map<String,SessionFactory> sessionFactories = new TreeMap<>();
 
-        for (Repository repo : repositories) {
-            repositoryMap.put(repo.getName(),repo);
+    }
 
-            System.out.println("Repo name: " + repo.getName());
-            System.out.println("Repo description: " + repo.getDescription());
-            System.out.println("Repo location: " + repo.getDatabaseFileLocation());
-            System.out.println("");
+    public static void createTestDatabasesIfTheyDontExist() {
+        // Define test database info
+        List<Repository> testRepos = new ArrayList<>();
+        testRepos.add(new Repository("testRepo1",
+            "Test repository 1",
+            "./data/testRepo1/testRepo1"));
+        testRepos.add(new Repository("testRepo2",
+            "Test repository 2",
+            "./data/testRepo2/testRepo2"));
+
+        // Create repo database
+        if(repositoryService.findById(repoSessionFactory, 1L) == null) {
+            repositoryService.update(repoSessionFactory,testRepos.get(0));
+            repositoryService.update(repoSessionFactory,testRepos.get(1));
+        }
+
+        // If the test repos don't exist, create those databases
+        Map<String, Repository> repositoryMap = loadRepositories();
+        Map<String,SessionFactory> sessionFactories = loadRepoSessionFactories(repositoryMap);
+
+        for(Repository repo : testRepos)
+        {
+            SessionFactory sf = sessionFactories.get(repo.getName());
+            if(authorService.findById(sf,1L) == null) {
+
+                // Init authors, products, and stages
+                authorService.update(sf, new Author("Me","Who","Mehoo"));
+                authorService.update(sf, new Author("Me","Too","Me2"));
+
+                productService.update(sf, new Product("Tool1","A tool to do one thing"));
+                productService.update(sf, new Product("Tool2","A tool to do somethine else"));
+                productService.update(sf, new Product("Tool3","A tool to do yet another thing"));
+
+                stageService.update(sf, new Stage("Open"));
+                stageService.update(sf, new Stage("Implement"));
+                stageService.update(sf, new Stage("Verify"));
+                stageService.update(sf, new Stage("Closed"));
+            }
         }
     }
 
-    private static Long save(Repository repository){
-        // Open a session
-        Session session = repoSessionFactory.openSession();
+    private static Map<String, SessionFactory> loadRepoSessionFactories(Map<String, Repository> repositoryMap) {
+        Map<String, SessionFactory> sessionFactories = new TreeMap<>();
 
-        // Begin transaction
-        session.beginTransaction();
+        for (Map.Entry<String, Repository> repo : repositoryMap.entrySet()) {
 
-        // Use the session to save the data
-        Long id = (Long) session.save(repository);
+            Configuration cfg = new Configuration();
+            cfg.configure("repoBase_hibernate.cfg.xml");
+            cfg.getProperties().setProperty("hibernate.connection.url","jdbc:h2:" +
+                repo.getValue().getDatabaseFileLocation());
+            cfg.addAnnotatedClass(Author.class);
+            cfg.addAnnotatedClass(Bug.class);
+            cfg.addAnnotatedClass(Note.class);
+            cfg.addAnnotatedClass(Product.class);
+            cfg.addAnnotatedClass(Stage.class);
 
-        // Commit the transaction
-        session.getTransaction().commit();
+            sessionFactories.put(repo.getKey(),cfg.buildSessionFactory());
 
-        // Close the session
-        session.close();
+        }
 
-        return id;
+        return sessionFactories;
     }
 
-    private static List<Repository> fetchAllRepositories() {
-        // Open session
-        Session session = repoSessionFactory.openSession();
+    private static Map<String, Repository> loadRepositories() {
+        Map<String, Repository> repositoryMap = new TreeMap<>();
 
-        // Get repositories
-        List<Repository> repositories = session.createQuery("select r from Repository r").getResultList();
+        List<Repository> repositories = repositoryService.findAll(repoSessionFactory);
 
-        // Close session
-        session.close();
+        for (Repository repo : repositories) {
+            repositoryMap.put(repo.getName(), repo);
+        }
 
-        return repositories;
-    }
-
-    private static Repository findRepositoryById(Long id) {
-        // Open a session
-        Session session = repoSessionFactory.openSession();
-
-        // Retrieve a persistent object
-        Repository repository = session.get(Repository.class, id);
-
-        // Close session
-        session.close();
-
-        return repository;
-    }
-
-    private static void update(Repository repository) {
-        // Open a session
-        Session session = repoSessionFactory.openSession();
-
-        // Begin transaction
-        session.beginTransaction();
-
-        // Use the session to save the data
-        session.update(repository);
-
-        // Commit the transaction
-        session.getTransaction().commit();
-
-        // Close the session
-        session.close();
-    }
-
-    private static void delete(Repository repository) {
-        // Open a session
-        Session session = repoSessionFactory.openSession();
-
-        // Begin transaction
-        session.beginTransaction();
-
-        // Use the session to save the data
-        session.delete(repository);
-
-        // Commit the transaction
-        session.getTransaction().commit();
-
-        // Close the session
-        session.close();
+        return repositoryMap;
     }
 }

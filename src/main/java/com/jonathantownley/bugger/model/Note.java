@@ -1,16 +1,30 @@
 package com.jonathantownley.bugger.model;
 
+import javax.persistence.*;
+import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+@Entity
 public class Note {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String content;
     private Date date;
+
+    @ManyToOne
     private Author author;
 
-    public Note(Long id, String content, Date date, Author author) {
-        this.id = id;
+    private ArrayList<Blob> attachments;
+
+    // Default constructor for JPA
+    public Note() {}
+
+    public Note(String content, Date date, Author author) {
         this.content = content;
         this.date = date;
         this.author = author;

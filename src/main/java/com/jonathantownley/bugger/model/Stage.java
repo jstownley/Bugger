@@ -1,13 +1,24 @@
 package com.jonathantownley.bugger.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Stage {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String stage;
 
-    public Stage(Long id, String stage) {
-        this.id = id;
-        this.stage = stage;
+    private String name;
+
+    // Default constructor for JPZ
+    public Stage() {}
+
+    public Stage(String stage) {
+        this.name = stage;
     }
 
     public Long getId() {
@@ -18,11 +29,11 @@ public class Stage {
         this.id = id;
     }
 
-    public String getStage() {
-        return stage;
+    public String getName() {
+        return name;
     }
 
-    public void setStage(String stage) {
-        this.stage = stage;
+    public void setName(String name) {
+        this.name = name;
     }
 }
