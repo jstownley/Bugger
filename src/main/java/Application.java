@@ -5,122 +5,122 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Application {
 
-    // Hold reusable references to the Repository SessionFactory and services
-    private static final SessionFactory repoSessionFactory = buildSessionFactory();
+    // Hold reusable references to the various bug-related services
     private static final AuthorService authorService = new AuthorServiceImpl();
-    public static final BugService bugService = new BugServiceImpl();
-    public static final NoteService noteService = new NoteServiceImpl();
-    public static final ProductService productService = new ProductServiceImpl();
-    public static final RepositoryService repositoryService = new RepositoryServiceImpl();
-    public static final SeverityService severityService = new SeverityServiceImpl();
-    public static final StatusService statusService = new StatusServiceImpl();
-
-    private static SessionFactory buildSessionFactory(){
-        // Create a StandardServiceRegistery
-        final ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-        return new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    }
+    private static final BugService bugService = new BugServiceImpl();
+    private static final NoteService noteService = new NoteServiceImpl();
+    private static final ProductService productService = new ProductServiceImpl();
+    private static final SeverityService severityService = new SeverityServiceImpl();
+    private static final StatusService statusService = new StatusServiceImpl();
 
     public static void main(String[] args) {
         // Get repositories and sessionFactories
-        Map<String, Repository> repositoryMap = loadRepositories();
-//        Map<String,SessionFactory> sessionFactories = loadRepoSessionFactories(repositoryMap);
-        Map<String,SessionFactory> sessionFactories = createTestDatabasesIfTheyDontExist();
+        List<Repository> repositories = loadRepositories();
+        createTestDatabasesIfTheyDontExist(repositories);
 
     }
 
-    public static Map<String,SessionFactory> createTestDatabasesIfTheyDontExist() {
-        // Define test database info
-        List<Repository> testRepos = new ArrayList<>();
-        testRepos.add(new Repository("testRepo1",
-            "Test repository 1",
-            "./data/testRepo1/testRepo1"));
-        testRepos.add(new Repository("testRepo2",
-            "Test repository 2",
-            "./data/testRepo2/testRepo2"));
-
-        // Create repo database
-        if(repositoryService.findById(repoSessionFactory, 1L) == null) {
-            repositoryService.update(repoSessionFactory,testRepos.get(0));
-            repositoryService.update(repoSessionFactory,testRepos.get(1));
+    private static void createTestDatabasesIfTheyDontExist(List<Repository> repositories) {
+        // Create repo config info if there aren't any repos configured
+        if(repositories == null) {
+            JSONObject repoDetails = new JSONObject();
+            JSONObject repoObject = new JSONObject();
+            JSONArray repoList = new JSONArray();
+            
+            // Test Repo 1
+            repoDetails.put("name","testRepo1");
+            repoDetails.put("databaseFileLocation","./data/testRepo1");
+            repoObject.put("repository", repoDetails);
+            repoList.add(repoObject);
+            
+            // Test Repo 2
+            repoDetails.put("name","testRepo2");
+            repoDetails.put("databaseFileLocation","./data/testRepo2");
+            repoObject.put("repository", repoDetails);
+            repoList.add(repoObject);
+            
+            try(FileWriter file = new FileWriter("./src/main/resources/repositories.json")) {
+                file.write(repoList.toJSONString());
+                file.flush();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+            repositories = loadRepositories();
         }
 
-        // If the test repos don't exist, create those databases
-        Map<String, Repository> repositoryMap = loadRepositories();
-        Map<String,SessionFactory> sessionFactories = loadRepoSessionFactories(repositoryMap);
-
-        for(Repository repo : testRepos)
+        for(Repository repo : repositories)
         {
-            SessionFactory sf = sessionFactories.get(repo.getName());
-            if(authorService.findById(sf,1L) == null) {
+            if(authorService.findById(repo,1L) == null) {
 
                 // Init authors, products, and stages
-                authorService.update(sf, new Author("Brinkley"));
-                authorService.update(sf, new Author("Cooper"));
-                authorService.update(sf, new Author("Reed"));
-                authorService.update(sf, new Author("Townley"));
+                authorService.update(repo, new Author("Brinkley"));
+                authorService.update(repo, new Author("Cooper"));
+                authorService.update(repo, new Author("Reed"));
+                authorService.update(repo, new Author("Townley"));
 
-                productService.update(sf, new Product("QuickLook","Runs pre-defined analyses for a single test event"));
-                productService.update(sf, new Product("DataMorpher","Translates data from one format to another"));
-                productService.update(sf, new Product("GenericMergePlotter","Mereges data from multiple test events before analyzing"));
+                productService.update(repo, new Product("QuickLook","Runs pre-defined analyses for a single test event"));
+                productService.update(repo, new Product("DataMorpher","Translates data from one format to another"));
+                productService.update(repo, new Product("GenericMergePlotter","Mereges data from multiple test events before analyzing"));
 
-                severityService.update(sf, new Severity("Critical"));
-                severityService.update(sf, new Severity("Major"));
-                severityService.update(sf, new Severity("Minor"));
-                severityService.update(sf, new Severity("Cosmetic"));
+                severityService.update(repo, new Severity("Critical"));
+                severityService.update(repo, new Severity("Major"));
+                severityService.update(repo, new Severity("Minor"));
+                severityService.update(repo, new Severity("Cosmetic"));
 
-                statusService.update(sf, new Status("Open"));
-                statusService.update(sf, new Status("Examine"));
-                statusService.update(sf, new Status("Implement"));
-                statusService.update(sf, new Status("Verify"));
-                statusService.update(sf, new Status("Closed"));
-                statusService.update(sf, new Status("Rejected"));
-                statusService.update(sf, new Status("Duplicate"));
+                statusService.update(repo, new Status("Open"));
+                statusService.update(repo, new Status("Examine"));
+                statusService.update(repo, new Status("Implement"));
+                statusService.update(repo, new Status("Verify"));
+                statusService.update(repo, new Status("Closed"));
+                statusService.update(repo, new Status("Rejected"));
+                statusService.update(repo, new Status("Duplicate"));
             }
         }
-
-        return sessionFactories;
     }
 
-    private static Map<String, SessionFactory> loadRepoSessionFactories(Map<String, Repository> repositoryMap) {
-        Map<String, SessionFactory> sessionFactories = new TreeMap<>();
+    private static List<Repository> loadRepositories() {
+        List<Repository> repositories = new ArrayList<>();
+        JSONParser jsonParser = new JSONParser();
 
-        for (Map.Entry<String, Repository> repo : repositoryMap.entrySet()) {
-            sessionFactories.put(repo.getKey(),
-                createSessionFactory(repo.getValue().getDatabaseFileLocation()));
+        try(FileReader reader = new FileReader("./src/main/resources/repositories.json")) {
+            JSONArray jsonRepos = (JSONArray) jsonParser.parse(reader);
+
+            
+            for (Object repo : jsonRepos) {
+                JSONObject repoObject = (JSONObject) ((JSONObject) repo).get("repository");
+                String name = repoObject.get("name").toString();
+                String databaseFileLocation = repoObject.get("databaseFileLocation").toString();
+                
+                repositories.add(new Repository(name, 
+                    databaseFileLocation,
+                    createSessionFactory(databaseFileLocation + "/" + name)));
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
         }
 
-        return sessionFactories;
-    }
-
-    private static Map<String, Repository> loadRepositories() {
-        Map<String, Repository> repositoryMap = new TreeMap<>();
-
-        List<Repository> repositories = repositoryService.findAll(repoSessionFactory);
-
-        for (Repository repo : repositories) {
-            repositoryMap.put(repo.getName(), repo);
-        }
-
-        return repositoryMap;
+        return repositories;
     }
 
     private static SessionFactory createSessionFactory(String dbUrl) {
-
         Configuration cfg = new Configuration();
         cfg.configure("repoBase_hibernate.cfg.xml");
         cfg.getProperties().setProperty("hibernate.connection.url","jdbc:h2:" + dbUrl);
-        cfg.addAnnotatedClass(Author.class);
-        cfg.addAnnotatedClass(Bug.class);
-        cfg.addAnnotatedClass(Note.class);
-        cfg.addAnnotatedClass(Product.class);
-        cfg.addAnnotatedClass(Severity.class);
-        cfg.addAnnotatedClass(Status.class);
 
         return cfg.buildSessionFactory();
     }

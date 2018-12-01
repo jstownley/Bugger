@@ -2,15 +2,14 @@ package com.jonathantownley.bugger.service;
 
 import com.jonathantownley.bugger.model.*;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 public class BugServiceImpl implements BugService {
     @Override
-    public List<Bug> findAll(SessionFactory sessionFactory) {
+    public List<Bug> findAll(Repository repository) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         List<Bug> bugs = session.createQuery("select s from Bug s").getResultList();
@@ -21,9 +20,9 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public Bug findById(SessionFactory sessionFactory, Long id) {
+    public Bug findById(Repository repository, Long id) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         Bug bug = session.get(Bug.class, id);
@@ -34,29 +33,29 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public Author findAuthorByBugId(SessionFactory sessionFactory, Long id) {
-        return findById(sessionFactory, id).getAuthor();
+    public Author findAuthorByBugId(Repository repository, Long id) {
+        return findById(repository, id).getAuthor();
     }
 
     @Override
-    public List<Note> findNotesByBugId(SessionFactory sessionFactory, Long id) {
-        return findById(sessionFactory, id).getNotes();
+    public List<Note> findNotesByBugId(Repository repository, Long id) {
+        return findById(repository, id).getNotes();
     }
 
     @Override
-    public Product findProductByBugId(SessionFactory sessionFactory, Long id) {
-        return findById(sessionFactory, id).getProduct();
+    public Product findProductByBugId(Repository repository, Long id) {
+        return findById(repository, id).getProduct();
     }
 
     @Override
-    public Status findStageByBugId(SessionFactory sessionFactory, Long id) {
-        return findById(sessionFactory, id).getStatus();
+    public Status findStageByBugId(Repository repository, Long id) {
+        return findById(repository, id).getStatus();
     }
 
     @Override
-    public void update(SessionFactory sessionFactory, Bug bug) {
+    public void update(Repository repository, Bug bug) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();
@@ -68,9 +67,9 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public void delete(SessionFactory sessionFactory, Bug bug) {
+    public void delete(Repository repository, Bug bug) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();

@@ -1,16 +1,16 @@
 package com.jonathantownley.bugger.service;
 
+import com.jonathantownley.bugger.model.Repository;
 import com.jonathantownley.bugger.model.Severity;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 public class SeverityServiceImpl implements SeverityService {
     @Override
-    public List<Severity> findAll(SessionFactory sessionFactory) {
+    public List<Severity> findAll(Repository repository) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         List<Severity> severityes = session.createQuery("select s from Severity s").getResultList();
@@ -21,9 +21,9 @@ public class SeverityServiceImpl implements SeverityService {
     }
 
     @Override
-    public Severity findById(SessionFactory sessionFactory, Long id) {
+    public Severity findById(Repository repository, Long id) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         Severity severity = session.get(Severity.class, id);
@@ -34,9 +34,9 @@ public class SeverityServiceImpl implements SeverityService {
     }
 
     @Override
-    public void update(SessionFactory sessionFactory, Severity severity) {
+    public void update(Repository repository, Severity severity) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();
@@ -48,9 +48,9 @@ public class SeverityServiceImpl implements SeverityService {
     }
 
     @Override
-    public void delete(SessionFactory sessionFactory, Severity severity) {
+    public void delete(Repository repository, Severity severity) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();

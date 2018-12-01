@@ -1,16 +1,16 @@
 package com.jonathantownley.bugger.service;
 
+import com.jonathantownley.bugger.model.Repository;
 import com.jonathantownley.bugger.model.Status;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 public class StatusServiceImpl implements StatusService {
     @Override
-    public List<Status> findAll(SessionFactory sessionFactory) {
+    public List<Status> findAll(Repository repository) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         List<Status> statuses = session.createQuery("select s from Status s").getResultList();
@@ -21,9 +21,9 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public Status findById(SessionFactory sessionFactory, Long id) {
+    public Status findById(Repository repository, Long id) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         Status status = session.get(Status.class, id);
@@ -34,9 +34,9 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public void update(SessionFactory sessionFactory, Status status) {
+    public void update(Repository repository, Status status) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();
@@ -48,9 +48,9 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public void delete(SessionFactory sessionFactory, Status status) {
+    public void delete(Repository repository, Status status) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();

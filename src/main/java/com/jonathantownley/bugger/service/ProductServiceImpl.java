@@ -1,16 +1,16 @@
 package com.jonathantownley.bugger.service;
 
 import com.jonathantownley.bugger.model.Product;
+import com.jonathantownley.bugger.model.Repository;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
     @Override
-    public List<Product> findAll(SessionFactory sessionFactory) {
+    public List<Product> findAll(Repository repository) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         List<Product> products = session.createQuery("select p from Product p").getResultList();
@@ -21,9 +21,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findById(SessionFactory sessionFactory, Long id) {
+    public Product findById(Repository repository, Long id) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         Product product = session.get(Product.class, id);
@@ -34,9 +34,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void update(SessionFactory sessionFactory, Product product) {
+    public void update(Repository repository, Product product) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();
@@ -48,9 +48,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(SessionFactory sessionFactory, Product product) {
+    public void delete(Repository repository, Product product) {
         // Open session
-        Session session = sessionFactory.openSession();
+        Session session = repository.getSessionFactory().openSession();
 
         // Do stuff
         session.beginTransaction();

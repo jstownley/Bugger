@@ -1,36 +1,23 @@
 package com.jonathantownley.bugger.model;
 
+import org.hibernate.SessionFactory;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
 public class Repository {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String name;
     private String description;
     private String databaseFileLocation;
+    private SessionFactory sessionFactory;
 
-    // Default constructor for JPA
-    public Repository() {}
-
-    public Repository(String name, String description, String databaseFileLocation) {
+    public Repository(String name, String databaseFileLocation, SessionFactory sessionFactory) {
         this.name = name;
-        this.description = description;
         this.databaseFileLocation = databaseFileLocation;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.sessionFactory = sessionFactory;
     }
 
     public String getName() {
@@ -55,5 +42,13 @@ public class Repository {
 
     public void setDatabaseFileLocation(String databaseFileLocation) {
         this.databaseFileLocation = databaseFileLocation;
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }
