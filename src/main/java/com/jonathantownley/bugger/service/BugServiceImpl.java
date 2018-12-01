@@ -49,8 +49,8 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public Stage findStageByBugId(SessionFactory sessionFactory, Long id) {
-        return findById(sessionFactory, id).getStage();
+    public Status findStageByBugId(SessionFactory sessionFactory, Long id) {
+        return findById(sessionFactory, id).getStatus();
     }
 
     @Override

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Stage {
+public class Severity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +14,11 @@ public class Stage {
 
     private String name;
 
-    // Default constructor for JPZ
-    public Stage() {}
+    // Default constructor for JPA
+    public Severity() {}
 
-    public Stage(String stage) {
-        this.name = stage;
+    public Severity(String name) {
+        this.name = name;
     }
 
     public Long getId() {

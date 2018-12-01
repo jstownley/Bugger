@@ -1,50 +1,46 @@
 package com.jonathantownley.bugger.service;
 
-import com.jonathantownley.bugger.model.Stage;
+import com.jonathantownley.bugger.model.Status;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class StageServiceImpl implements StageService {
+public class StatusServiceImpl implements StatusService {
     @Override
-    public List<Stage> findAll(SessionFactory sessionFactory) {
+    public List<Status> findAll(SessionFactory sessionFactory) {
         // Open session
         Session session = sessionFactory.openSession();
 
         // Do stuff
-        List<Stage> stages = session.createQuery("select s from Stage s").getResultList();
+        List<Status> statuses = session.createQuery("select s from Status s").getResultList();
 
         // Close session
         session.close();
-        return stages;
+        return statuses;
     }
 
     @Override
-    public Stage findById(SessionFactory sessionFactory, Long id) {
+    public Status findById(SessionFactory sessionFactory, Long id) {
         // Open session
         Session session = sessionFactory.openSession();
 
         // Do stuff
-        Stage stage = session.get(Stage.class, id);
+        Status status = session.get(Status.class, id);
 
         // Close session
         session.close();
-        return stage;
+        return status;
     }
 
     @Override
-    public void update(SessionFactory sessionFactory, Stage stage) {
+    public void update(SessionFactory sessionFactory, Status status) {
         // Open session
         Session session = sessionFactory.openSession();
 
         // Do stuff
         session.beginTransaction();
-        session.saveOrUpdate(stage);
+        session.saveOrUpdate(status);
         session.getTransaction().commit();
 
         // Close session
@@ -52,13 +48,13 @@ public class StageServiceImpl implements StageService {
     }
 
     @Override
-    public void delete(SessionFactory sessionFactory, Stage stage) {
+    public void delete(SessionFactory sessionFactory, Status status) {
         // Open session
         Session session = sessionFactory.openSession();
 
         // Do stuff
         session.beginTransaction();
-        session.delete(stage);
+        session.delete(status);
         session.getTransaction().commit();
 
         // Close session

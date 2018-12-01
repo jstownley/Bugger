@@ -26,12 +26,15 @@ public class Bug {
     private List<Note> notes;
 
     @ManyToOne
-    private Stage stage;
+    private Severity severity;
+
+    @ManyToOne
+    private Status status;
 
     // Default constructor for JPA
     public Bug() {}
 
-    public Bug(Date date, Author author, String title, String description, String repositoryName, Product product, List<Note> notes, Stage stage) {
+    public Bug(Date date, Author author, String title, String description, String repositoryName, Product product, List<Note> notes, Severity severity, Status status) {
         this.date = date;
         this.author = author;
         this.title = title;
@@ -39,7 +42,8 @@ public class Bug {
         this.repositoryName = repositoryName;
         this.product = product;
         this.notes = notes;
-        this.stage = stage;
+        this.severity = severity;
+        this.status = status;
     }
 
     public Long getId() {
@@ -82,14 +86,6 @@ public class Bug {
         this.description = description;
     }
 
-    public String getRepo() {
-        return repositoryName;
-    }
-
-    public void setRepo(String repositoryName) {
-        this.repositoryName = repositoryName;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -106,11 +102,27 @@ public class Bug {
         this.notes = notes;
     }
 
-    public Stage getStage() {
-        return stage;
+    public String getRepositoryName() {
+        return repositoryName;
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void setRepositoryName(String repositoryName) {
+        this.repositoryName = repositoryName;
+    }
+
+    public Severity getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(Severity severity) {
+        this.severity = severity;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

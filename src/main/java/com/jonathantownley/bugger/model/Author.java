@@ -1,5 +1,7 @@
 package com.jonathantownley.bugger.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +15,23 @@ public class Author {
     private Long id;
 
     private String firstName;
+
+    @NotNull
     private String lastName;
-    private String nickName;
+
+    private String callSign;
 
     // Default constructor for JPA
     public Author() {}
 
-    public Author(String firstName, String lastName, String nickName) {
+    public Author(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Author(String firstName, String lastName, String callSign) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.nickName = nickName;
+        this.callSign = callSign;
     }
 
     public Long getId() {
@@ -49,11 +58,11 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getCallSign() {
+        return callSign;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setCallSign(String callSign) {
+        this.callSign = callSign;
     }
 }

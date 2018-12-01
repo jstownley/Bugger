@@ -11,7 +11,7 @@ public interface BugService {
     Author findAuthorByBugId(SessionFactory sessionFactory, Long id);
     List<Note> findNotesByBugId(SessionFactory sessionFactory, Long id);
     Product findProductByBugId(SessionFactory sessionFactory, Long id);
-    Stage findStageByBugId(SessionFactory sessionFactory, Long id);
+    Status findStageByBugId(SessionFactory sessionFactory, Long id);
     void update(SessionFactory sessionFactory, Bug bug);
     void delete(SessionFactory sessionFactory, Bug bug);
 }

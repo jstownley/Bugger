@@ -1,13 +1,11 @@
 import com.jonathantownley.bugger.model.*;
 import com.jonathantownley.bugger.service.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import java.io.File;
 import java.util.*;
 
 public class Application {
@@ -19,7 +17,8 @@ public class Application {
     public static final NoteService noteService = new NoteServiceImpl();
     public static final ProductService productService = new ProductServiceImpl();
     public static final RepositoryService repositoryService = new RepositoryServiceImpl();
-    public static final StageService stageService = new StageServiceImpl();
+    public static final SeverityService severityService = new SeverityServiceImpl();
+    public static final StatusService statusService = new StatusServiceImpl();
 
     private static SessionFactory buildSessionFactory(){
         // Create a StandardServiceRegistery
@@ -28,14 +27,14 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        createTestDatabasesIfTheyDontExist();
-
-        Map<String, Repository> repositoryMap = new TreeMap<>();
-        Map<String,SessionFactory> sessionFactories = new TreeMap<>();
+        // Get repositories and sessionFactories
+        Map<String, Repository> repositoryMap = loadRepositories();
+//        Map<String,SessionFactory> sessionFactories = loadRepoSessionFactories(repositoryMap);
+        Map<String,SessionFactory> sessionFactories = createTestDatabasesIfTheyDontExist();
 
     }
 
-    public static void createTestDatabasesIfTheyDontExist() {
+    public static Map<String,SessionFactory> createTestDatabasesIfTheyDontExist() {
         // Define test database info
         List<Repository> testRepos = new ArrayList<>();
         testRepos.add(new Repository("testRepo1",
@@ -61,38 +60,39 @@ public class Application {
             if(authorService.findById(sf,1L) == null) {
 
                 // Init authors, products, and stages
-                authorService.update(sf, new Author("Me","Who","Mehoo"));
-                authorService.update(sf, new Author("Me","Too","Me2"));
+                authorService.update(sf, new Author("Brinkley"));
+                authorService.update(sf, new Author("Cooper"));
+                authorService.update(sf, new Author("Reed"));
+                authorService.update(sf, new Author("Townley"));
 
-                productService.update(sf, new Product("Tool1","A tool to do one thing"));
-                productService.update(sf, new Product("Tool2","A tool to do somethine else"));
-                productService.update(sf, new Product("Tool3","A tool to do yet another thing"));
+                productService.update(sf, new Product("QuickLook","Runs pre-defined analyses for a single test event"));
+                productService.update(sf, new Product("DataMorpher","Translates data from one format to another"));
+                productService.update(sf, new Product("GenericMergePlotter","Mereges data from multiple test events before analyzing"));
 
-                stageService.update(sf, new Stage("Open"));
-                stageService.update(sf, new Stage("Implement"));
-                stageService.update(sf, new Stage("Verify"));
-                stageService.update(sf, new Stage("Closed"));
+                severityService.update(sf, new Severity("Critical"));
+                severityService.update(sf, new Severity("Major"));
+                severityService.update(sf, new Severity("Minor"));
+                severityService.update(sf, new Severity("Cosmetic"));
+
+                statusService.update(sf, new Status("Open"));
+                statusService.update(sf, new Status("Examine"));
+                statusService.update(sf, new Status("Implement"));
+                statusService.update(sf, new Status("Verify"));
+                statusService.update(sf, new Status("Closed"));
+                statusService.update(sf, new Status("Rejected"));
+                statusService.update(sf, new Status("Duplicate"));
             }
         }
+
+        return sessionFactories;
     }
 
     private static Map<String, SessionFactory> loadRepoSessionFactories(Map<String, Repository> repositoryMap) {
         Map<String, SessionFactory> sessionFactories = new TreeMap<>();
 
         for (Map.Entry<String, Repository> repo : repositoryMap.entrySet()) {
-
-            Configuration cfg = new Configuration();
-            cfg.configure("repoBase_hibernate.cfg.xml");
-            cfg.getProperties().setProperty("hibernate.connection.url","jdbc:h2:" +
-                repo.getValue().getDatabaseFileLocation());
-            cfg.addAnnotatedClass(Author.class);
-            cfg.addAnnotatedClass(Bug.class);
-            cfg.addAnnotatedClass(Note.class);
-            cfg.addAnnotatedClass(Product.class);
-            cfg.addAnnotatedClass(Stage.class);
-
-            sessionFactories.put(repo.getKey(),cfg.buildSessionFactory());
-
+            sessionFactories.put(repo.getKey(),
+                createSessionFactory(repo.getValue().getDatabaseFileLocation()));
         }
 
         return sessionFactories;
@@ -108,5 +108,20 @@ public class Application {
         }
 
         return repositoryMap;
+    }
+
+    private static SessionFactory createSessionFactory(String dbUrl) {
+
+        Configuration cfg = new Configuration();
+        cfg.configure("repoBase_hibernate.cfg.xml");
+        cfg.getProperties().setProperty("hibernate.connection.url","jdbc:h2:" + dbUrl);
+        cfg.addAnnotatedClass(Author.class);
+        cfg.addAnnotatedClass(Bug.class);
+        cfg.addAnnotatedClass(Note.class);
+        cfg.addAnnotatedClass(Product.class);
+        cfg.addAnnotatedClass(Severity.class);
+        cfg.addAnnotatedClass(Status.class);
+
+        return cfg.buildSessionFactory();
     }
 }
