@@ -2,30 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b54bb01f-b237-4ce1-aea0-01b8451962be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/repositories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/config/ConfigData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/config/Preferences.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/preferences.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/repositories.mv.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/testRepo1/testRepo1.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/testRepo2/testRepo2.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Author.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Bug.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Bug.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Note.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Note.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Severity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/model/Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/AuthorService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/AuthorServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/BugService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/BugService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/BugServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/BugServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/SeverityService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/SeverityServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/StatusService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/jonathantownley/bugger/service/StatusServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/repoBase_hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/repoBase_hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Author.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Severity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Status.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/RepositoryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/RepositoryServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/SeverityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/SeverityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/SeverityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/SeverityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StatusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StatusServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StatusServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/SeverityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/SeverityServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StatusService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StatusServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/repoBase_hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/repoBase_hibernate.cfg.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -47,8 +62,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1650">
-              <caret line="110" column="69" selection-start-line="110" selection-start-column="69" selection-end-line="110" selection-end-column="69" />
+            <state relative-caret-position="195">
+              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Repository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,10 +90,51 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/repositories.json">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="47" lean-forward="true" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+            <state relative-caret-position="105">
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#640#641#0" expanded="true" />
+                <element signature="e#665#666#0" expanded="true" />
+                <element signature="e#699#700#0" expanded="true" />
+                <element signature="e#727#728#0" expanded="true" />
+                <element signature="e#761#762#0" expanded="true" />
+                <element signature="e#791#792#0" expanded="true" />
+                <element signature="e#837#838#0" expanded="true" />
+                <element signature="e#875#876#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+                <element signature="e#931#932#0" expanded="true" />
+                <element signature="e#969#970#0" expanded="true" />
+                <element signature="e#1001#1002#0" expanded="true" />
+                <element signature="e#1034#1035#0" expanded="true" />
+                <element signature="e#1063#1064#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="55" lean-forward="true" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,6 +160,8 @@
       <find>sf,</find>
       <find>SessionFactory</find>
       <find>sessionFactory</find>
+      <find>));</find>
+      <find>Author</find>
     </findStrings>
     <replaceStrings>
       <replace>Author</replace>
@@ -98,6 +174,8 @@
       <replace>repo,</replace>
       <replace>Repository</replace>
       <replace>repository</replace>
+      <replace>String</replace>
+      <replace>,</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -108,7 +186,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Product.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StageServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/RepositoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/RepositoryServiceImpl.java" />
@@ -117,8 +194,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/StageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Severity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Author.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/repoBase_hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/repositories.json" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Repository.java" />
@@ -130,15 +205,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/ProductService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/NoteService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/preferences.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/config/ConfigData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/config/Preferences.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/repoBase_hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="1583" />
     <option name="y" value="19" />
     <option name="width" value="1297" />
@@ -235,6 +317,15 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="bugger" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bugger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Bugger" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bugger" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -262,7 +353,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543682268018" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543806655912" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="gradle.experimental" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -344,6 +435,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1583" y="19" width="1297" height="830" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24940239" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -379,6 +471,41 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>new Date()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>new Date().toInstant()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>statuses = new ArrayList&lt;&gt;(((JSONArray) jsonConfig.get(&quot;status&quot;)))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((JSONArray) jsonConfig.get(&quot;status&quot;)).get(0)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(List&lt;String&gt;) jsonConfig.get(&quot;status&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>jsonConfig.get(&quot;status&quot;).toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>jsonConfig.get(&quot;status&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>repo</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -388,96 +515,9 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>jsonRepos</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>repoObject.get(&quot;repository&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>repoObject.get(&quot;repository).get(&quot;databaseFileLocation&quot;).toString();
-                
-                repositories.add(new Repository(name, 
-                    databaseFileLocation,
-                    createSessionFactory(databaseFileLocation)))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>repoObject.get(&quot;name&quot;).toString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>f.exists()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>findById(sessionFactory, 1L)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>repositories.add(findById(sessionFactory,2L))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#387#388#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#517#518#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#721#722#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#427#428#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
-            <element signature="e#489#490#0" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#599#600#0" expanded="true" />
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
-            <element signature="e#825#826#0" expanded="true" />
-            <element signature="e#869#870#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/RepositoryService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -534,24 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="126" column="5" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2291#2292#0" expanded="true" />
-            <element signature="e#2328#2329#0" expanded="true" />
-            <element signature="e#2388#2389#0" expanded="true" />
-            <element signature="e#2440#2441#0" expanded="true" />
-            <element signature="e#2477#2478#0" expanded="true" />
-            <element signature="e#2508#2509#0" expanded="true" />
-            <element signature="e#2558#2559#0" expanded="true" />
-            <element signature="e#2598#2599#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -559,31 +581,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/repoBase_hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-            <element signature="e#1358#1359#0" expanded="true" />
-            <element signature="e#1426#1427#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -664,34 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="57" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#899#900#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1104#1105#0" expanded="true" />
-            <element signature="e#1191#1192#0" expanded="true" />
-            <element signature="e#1251#1252#0" expanded="true" />
-            <element signature="e#1335#1336#0" expanded="true" />
-            <element signature="e#1394#1395#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/AuthorServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
@@ -712,6 +685,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/preferences.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/repositories.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -719,13 +699,147 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="110" column="69" selection-start-line="110" selection-start-column="69" selection-end-line="110" selection-end-column="69" />
+        <state relative-caret-position="210">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/config/ConfigData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="61" column="8" lean-forward="true" selection-start-line="61" selection-start-column="8" selection-end-line="80" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/config/Preferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
+            <element signature="e#501#502#0" expanded="true" />
+            <element signature="e#545#546#0" expanded="true" />
+            <element signature="e#584#585#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#724#725#0" expanded="true" />
+            <element signature="e#765#766#0" expanded="true" />
+            <element signature="e#802#803#0" expanded="true" />
+            <element signature="e#863#864#0" expanded="true" />
+            <element signature="e#915#916#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+            <element signature="e#1113#1114#0" expanded="true" />
+            <element signature="e#1175#1176#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/repoBase_hibernate.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Note.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#875#876#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#931#932#0" expanded="true" />
+            <element signature="e#969#970#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1034#1035#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Bug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="55" lean-forward="true" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/model/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonathantownley/bugger/service/BugServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
         </state>
       </provider>
     </entry>

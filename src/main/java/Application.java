@@ -1,39 +1,47 @@
-import com.jonathantownley.bugger.model.*;
-import com.jonathantownley.bugger.service.*;
+import com.jonathantownley.bugger.config.ConfigData;
+import com.jonathantownley.bugger.config.Preferences;
+import com.jonathantownley.bugger.model.Bug;
+import com.jonathantownley.bugger.model.Note;
+import com.jonathantownley.bugger.model.Product;
+import com.jonathantownley.bugger.model.Repository;
+import com.jonathantownley.bugger.service.BugService;
+import com.jonathantownley.bugger.service.BugServiceImpl;
+import com.jonathantownley.bugger.service.ProductService;
+import com.jonathantownley.bugger.service.ProductServiceImpl;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Application {
 
     // Hold reusable references to the various bug-related services
-    private static final AuthorService authorService = new AuthorServiceImpl();
     private static final BugService bugService = new BugServiceImpl();
-    private static final NoteService noteService = new NoteServiceImpl();
     private static final ProductService productService = new ProductServiceImpl();
-    private static final SeverityService severityService = new SeverityServiceImpl();
-    private static final StatusService statusService = new StatusServiceImpl();
 
     public static void main(String[] args) {
+        // Get config data and preferences
+        ConfigData configData = new ConfigData("./src/main/resources/config.json");
+        Preferences preferences = new Preferences("./src/main/resources/preferences.json");
+
         // Get repositories and sessionFactories
         List<Repository> repositories = loadRepositories();
-        createTestDatabasesIfTheyDontExist(repositories);
+        createTestDatabasesIfTheyDontExist(repositories, configData, preferences);
 
     }
 
-    private static void createTestDatabasesIfTheyDontExist(List<Repository> repositories) {
+    private static void createTestDatabasesIfTheyDontExist(List<Repository> repositories,
+                                                           ConfigData configData,
+                                                           Preferences preferences) {
         // Create repo config info if there aren't any repos configured
         if(repositories == null) {
             JSONObject repoDetails = new JSONObject();
@@ -65,30 +73,26 @@ public class Application {
 
         for(Repository repo : repositories)
         {
-            if(authorService.findById(repo,1L) == null) {
+            if(productService.findById(repo,1L) == null) {
 
-                // Init authors, products, and stages
-                authorService.update(repo, new Author("Brinkley"));
-                authorService.update(repo, new Author("Cooper"));
-                authorService.update(repo, new Author("Reed"));
-                authorService.update(repo, new Author("Townley"));
-
+                // Init products
                 productService.update(repo, new Product("QuickLook","Runs pre-defined analyses for a single test event"));
                 productService.update(repo, new Product("DataMorpher","Translates data from one format to another"));
                 productService.update(repo, new Product("GenericMergePlotter","Mereges data from multiple test events before analyzing"));
 
-                severityService.update(repo, new Severity("Critical"));
-                severityService.update(repo, new Severity("Major"));
-                severityService.update(repo, new Severity("Minor"));
-                severityService.update(repo, new Severity("Cosmetic"));
-
-                statusService.update(repo, new Status("Open"));
-                statusService.update(repo, new Status("Examine"));
-                statusService.update(repo, new Status("Implement"));
-                statusService.update(repo, new Status("Verify"));
-                statusService.update(repo, new Status("Closed"));
-                statusService.update(repo, new Status("Rejected"));
-                statusService.update(repo, new Status("Duplicate"));
+                // Create a couple of bugs
+                Bug bug = new Bug(
+                    new Date(),
+                    preferences.getAuthor(),
+                    "Make it more awesome",
+                    "The tool needs to be much more awesome than it already is",
+                    repo.getName(),
+                    productService.findById(repo, 1L),
+                    new ArrayList<Note>(),
+                    configData.getSeverities().get(0),
+                    configData.getStatuses().get(0)
+                );
+                bugService.update(repo, bug);
             }
         }
     }

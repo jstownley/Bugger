@@ -1,6 +1,9 @@
 package com.jonathantownley.bugger.service;
 
-import com.jonathantownley.bugger.model.*;
+import com.jonathantownley.bugger.model.Bug;
+import com.jonathantownley.bugger.model.Note;
+import com.jonathantownley.bugger.model.Product;
+import com.jonathantownley.bugger.model.Repository;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -33,11 +36,6 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public Author findAuthorByBugId(Repository repository, Long id) {
-        return findById(repository, id).getAuthor();
-    }
-
-    @Override
     public List<Note> findNotesByBugId(Repository repository, Long id) {
         return findById(repository, id).getNotes();
     }
@@ -45,11 +43,6 @@ public class BugServiceImpl implements BugService {
     @Override
     public Product findProductByBugId(Repository repository, Long id) {
         return findById(repository, id).getProduct();
-    }
-
-    @Override
-    public Status findStageByBugId(Repository repository, Long id) {
-        return findById(repository, id).getStatus();
     }
 
     @Override

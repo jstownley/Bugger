@@ -1,0 +1,17 @@
+{
+  "status": [
+    "Open",
+    "Examine",
+    "Implement",
+    "Verify",
+    "Closed",
+    "Rejected",
+    "Duplicate"
+  ],
+  "severity": [
+    "Major",
+    "Minor",
+    "Cosmetic",
+    "Critical"
+  ]
+}

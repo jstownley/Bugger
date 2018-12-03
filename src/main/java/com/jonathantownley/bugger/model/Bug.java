@@ -12,9 +12,7 @@ public class Bug {
     private Long id;
 
     private Date date;
-
-    @ManyToOne
-    private Author author;
+    private String author;
     private String title;
     private String description;
     private String repositoryName;
@@ -22,19 +20,16 @@ public class Bug {
     @ManyToOne
     private Product product;
 
+    private String severity;
+    private String status;
+
     @OneToMany
     private List<Note> notes;
-
-    @ManyToOne
-    private Severity severity;
-
-    @ManyToOne
-    private Status status;
 
     // Default constructor for JPA
     public Bug() {}
 
-    public Bug(Date date, Author author, String title, String description, String repositoryName, Product product, List<Note> notes, Severity severity, Status status) {
+    public Bug(Date date, String author, String title, String description, String repositoryName, Product product, List<Note> notes, String severity, String status) {
         this.date = date;
         this.author = author;
         this.title = title;
@@ -62,11 +57,11 @@ public class Bug {
         this.date = date;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -110,19 +105,19 @@ public class Bug {
         this.repositoryName = repositoryName;
     }
 
-    public Severity getSeverity() {
+    public String getSeverity() {
         return severity;
     }
 
-    public void setSeverity(Severity severity) {
+    public void setSeverity(String severity) {
         this.severity = severity;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

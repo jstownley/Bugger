@@ -1,10 +1,12 @@
 package com.jonathantownley.bugger.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Note {
@@ -15,16 +17,14 @@ public class Note {
 
     private String content;
     private Date date;
-
-    @ManyToOne
-    private Author author;
+    private String author;
 
     private ArrayList<Blob> attachments;
 
     // Default constructor for JPA
     public Note() {}
 
-    public Note(String content, Date date, Author author) {
+    public Note(String content, Date date, String author) {
         this.content = content;
         this.date = date;
         this.author = author;
@@ -54,11 +54,11 @@ public class Note {
         this.date = date;
     }
 
-    public Author getAuthor() {
+    public String getString() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setString(String author) {
         this.author = author;
     }
 }

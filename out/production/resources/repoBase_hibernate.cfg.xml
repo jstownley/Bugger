@@ -10,11 +10,8 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Names the annotated entity classes -->
-        <mapping class="com.jonathantownley.bugger.model.Author" />
         <mapping class="com.jonathantownley.bugger.model.Bug" />
         <mapping class="com.jonathantownley.bugger.model.Note" />
         <mapping class="com.jonathantownley.bugger.model.Product" />
-        <mapping class="com.jonathantownley.bugger.model.Severity" />
-        <mapping class="com.jonathantownley.bugger.model.Status" />
     </session-factory>
 </hibernate-configuration>
