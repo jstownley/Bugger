@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        prefHeight="400.0"
+        prefWidth="600.0"
+        xmlns="http://javafx.com/javafx/8"
+        stylesheets="./src/main/resources/css/main.css"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.jonathantownley.bugger.controller.Home"
+        fx:id="container">
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <TextArea id="visibleBugsTextArea" prefHeight="27.0" prefWidth="482.0" />
+            <Button fx:id="addBugButton" mnemonicParsing="false" text="Button" />
+            <MenuButton fx:id="optsButton" mnemonicParsing="false" text="Settings" >
+               <items>
+                  <MenuItem fx:id="prefOpts" text="Preferences"/>
+               </items>
+            </MenuButton>
+         </children>
+      </HBox>
+      <TableView fx:id="bugTable" prefHeight="370.0" prefWidth="600">
+         <columns>
+            <TableColumn text="Repository" fx:id="repoCol"></TableColumn>
+            <TableColumn text="Bug #" fx:id="bugNumCol"></TableColumn>
+            <TableColumn text="Date Created" fx:id="dateCol"></TableColumn>
+            <TableColumn text="Author" fx:id="authorCol"></TableColumn>
+            <TableColumn text="Title" fx:id="titleCol"></TableColumn>
+            <TableColumn text="Product" fx:id="productCol"></TableColumn>
+            <TableColumn text="Severity" fx:id="severityCol"></TableColumn>
+            <TableColumn text="Status" fx:id="statusCol"></TableColumn>
+         </columns>
+      </TableView>
+   </children>
+</VBox>

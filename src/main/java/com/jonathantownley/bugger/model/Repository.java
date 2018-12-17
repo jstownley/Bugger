@@ -7,12 +7,10 @@ public class Repository {
     private String name;
     private String description;
     private String databaseFileLocation;
-    private SessionFactory sessionFactory;
 
-    public Repository(String name, String databaseFileLocation, SessionFactory sessionFactory) {
+    public Repository(String name, String databaseFileLocation) {
         this.name = name;
         this.databaseFileLocation = databaseFileLocation;
-        this.sessionFactory = sessionFactory;
     }
 
     public String getName() {
@@ -37,13 +35,5 @@ public class Repository {
 
     public void setDatabaseFileLocation(String databaseFileLocation) {
         this.databaseFileLocation = databaseFileLocation;
-    }
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
     }
 }

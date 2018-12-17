@@ -1,0 +1,14 @@
+[
+  {
+    "repository": {
+      "name": "Test Repo 1",
+      "databaseFileLocation": "./data/testRepo1/testRepo1"
+    }
+  },
+  {
+    "repository": {
+      "name": "Test Repo 2",
+      "databaseFileLocation": "./data/testRepo2/testRepo2"
+    }
+  }
+]

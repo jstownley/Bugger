@@ -1,63 +1,37 @@
 package com.jonathantownley.bugger.service;
 
+import com.jonathantownley.bugger.dao.ProductDao;
 import com.jonathantownley.bugger.model.Product;
 import com.jonathantownley.bugger.model.Repository;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private ProductDao productDao;
+
     @Override
-    public List<Product> findAll(Repository repository) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        List<Product> products = session.createQuery("select p from Product p").getResultList();
-
-        // Close session
-        session.close();
-        return products;
+    public List<Product> findAll(String repositoryName) {
+        return productDao.findAll(repositoryName);
     }
 
     @Override
-    public Product findById(Repository repository, Long id) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        Product product = session.get(Product.class, id);
-
-        // Close session
-        session.close();
-        return product;
+    public Product findById(String repositoryName, Long id) {
+        return productDao.findById(repositoryName, id);
     }
 
     @Override
-    public void update(Repository repository, Product product) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        session.beginTransaction();
-        session.saveOrUpdate(product);
-        session.getTransaction().commit();
-
-        // Close session
-        session.close();
+    public void update(String repositoryName, Product product) {
+        productDao.update(repositoryName, product);
     }
 
     @Override
-    public void delete(Repository repository, Product product) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        session.beginTransaction();
-        session.delete(product);
-        session.getTransaction().commit();
-
-        // Close session
-        session.close();
+    public void delete(String repositoryName, Product product) {
+        productDao.delete(repositoryName, product);
     }
 }

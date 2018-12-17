@@ -1,75 +1,49 @@
 package com.jonathantownley.bugger.service;
 
+import com.jonathantownley.bugger.dao.BugDao;
 import com.jonathantownley.bugger.model.Bug;
 import com.jonathantownley.bugger.model.Note;
 import com.jonathantownley.bugger.model.Product;
 import com.jonathantownley.bugger.model.Repository;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BugServiceImpl implements BugService {
+
+    @Autowired
+    private BugDao bugDao;
+
     @Override
-    public List<Bug> findAll(Repository repository) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        List<Bug> bugs = session.createQuery("select s from Bug s").getResultList();
-
-        // Close session
-        session.close();
-        return bugs;
+    public List<Bug> findAll(String repositoryName) {
+        return bugDao.findAll(repositoryName);
     }
 
     @Override
-    public Bug findById(Repository repository, Long id) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        Bug bug = session.get(Bug.class, id);
-
-        // Close session
-        session.close();
-        return bug;
+    public Bug findById(String repositoryName, Long id) {
+        return bugDao.findById(repositoryName, id);
     }
 
     @Override
-    public List<Note> findNotesByBugId(Repository repository, Long id) {
-        return findById(repository, id).getNotes();
+    public List<Note> findNotesByBugId(String repositoryName, Long id) {
+        return findById(repositoryName, id).getNotes();
     }
 
     @Override
-    public Product findProductByBugId(Repository repository, Long id) {
-        return findById(repository, id).getProduct();
+    public Product findProductByBugId(String repositoryName, Long id) {
+        return findById(repositoryName, id).getProduct();
     }
 
     @Override
-    public void update(Repository repository, Bug bug) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        session.beginTransaction();
-        session.saveOrUpdate(bug);
-        session.getTransaction().commit();
-
-        // Close session
-        session.close();
+    public void update(String repositoryName, Bug bug) {
+        bugDao.update(repositoryName, bug);
     }
 
     @Override
-    public void delete(Repository repository, Bug bug) {
-        // Open session
-        Session session = repository.getSessionFactory().openSession();
-
-        // Do stuff
-        session.beginTransaction();
-        session.delete(bug);
-        session.getTransaction().commit();
-
-        // Close session
-        session.close();
+    public void delete(String repositoryName, Bug bug) {
+        bugDao.delete(repositoryName, bug);
     }
 }

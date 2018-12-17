@@ -6,8 +6,8 @@ import com.jonathantownley.bugger.model.Repository;
 import java.util.List;
 
 public interface ProductService {
-    List<Product> findAll(Repository repository);
-    Product findById(Repository repository, Long id);
-    void update(Repository repository, Product product);
-    void delete(Repository repository, Product product);
+    List<Product> findAll(String repositoryName);
+    Product findById(String repositoryName, Long id);
+    void update(String repositoryName, Product product);
+    void delete(String repositoryName, Product product);
 }

@@ -8,10 +8,10 @@ import com.jonathantownley.bugger.model.Repository;
 import java.util.List;
 
 public interface BugService {
-    List<Bug> findAll(Repository repository);
-    Bug findById(Repository repository, Long id);
-    List<Note> findNotesByBugId(Repository repository, Long id);
-    Product findProductByBugId(Repository repository, Long id);
-    void update(Repository repository, Bug bug);
-    void delete(Repository repository, Bug bug);
+    List<Bug> findAll(String repositoryName);
+    Bug findById(String repositoryName, Long id);
+    List<Note> findNotesByBugId(String repositoryName, Long id);
+    Product findProductByBugId(String repositoryName, Long id);
+    void update(String repositoryName, Bug bug);
+    void delete(String repositoryName, Bug bug);
 }
