@@ -27,6 +27,7 @@ public class Preferences {
 
     public void setAuthor(String author) {
         this.author = author;
+        writePreferencesToFile();
     }
 
     public boolean isShowClosed() {
@@ -35,6 +36,7 @@ public class Preferences {
 
     public void setShowClosed(boolean showClosed) {
         this.showClosed = showClosed;
+        writePreferencesToFile();
     }
 
     public boolean isShowRejected() {
@@ -43,6 +45,7 @@ public class Preferences {
 
     public void setShowRejected(boolean showRejected) {
         this.showRejected = showRejected;
+        writePreferencesToFile();
     }
 
     public boolean isShowDuplicates() {
@@ -51,6 +54,7 @@ public class Preferences {
 
     public void setShowDuplicates(boolean showDuplicates) {
         this.showDuplicates = showDuplicates;
+        writePreferencesToFile();
     }
 
     public String getPreferencesFileName() {

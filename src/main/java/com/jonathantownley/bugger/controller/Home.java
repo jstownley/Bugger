@@ -1,5 +1,7 @@
 package com.jonathantownley.bugger.controller;
 
+import com.jonathantownley.bugger.Bugger;
+import com.jonathantownley.bugger.config.Preferences;
 import com.jonathantownley.bugger.model.Bug;
 import com.jonathantownley.bugger.service.BugService;
 import javafx.beans.property.*;
@@ -8,15 +10,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -74,11 +81,27 @@ public class Home {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Launch prefs scene");
+                showPreferences();
             }
         });
 
 
+    }
+
+    private void showPreferences() {
+//        try {
+//            Parent prefsRoot = null;
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Preferences.fxml"));
+////            fxmlLoader.setController(Prefs.class);
+//            prefsRoot = fxmlLoader.load();
+            Stage prefStage = new Stage();
+            prefStage.setScene(new Scene(Bugger.prefRoot, 250, 202));
+            prefStage.setResizable(false);
+            prefStage.show();
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
