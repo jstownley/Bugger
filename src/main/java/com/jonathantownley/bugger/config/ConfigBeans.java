@@ -72,9 +72,4 @@ public class ConfigBeans {
 
         return  repoNames;
     }
-
-    @Bean
-    public Preferences getPreferences() {
-        return new Preferences("./src/main/resources/json/preferences.json");
-    }
 }

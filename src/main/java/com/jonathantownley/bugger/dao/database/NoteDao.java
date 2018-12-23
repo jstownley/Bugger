@@ -1,4 +1,4 @@
-package com.jonathantownley.bugger.dao;
+package com.jonathantownley.bugger.dao.database;
 
 import com.jonathantownley.bugger.model.Note;
 import org.hibernate.Session;

@@ -1,4 +1,4 @@
-package com.jonathantownley.bugger.dao;
+package com.jonathantownley.bugger.dao.database;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

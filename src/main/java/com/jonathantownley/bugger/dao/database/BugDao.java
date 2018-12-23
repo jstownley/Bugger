@@ -1,43 +1,47 @@
-package com.jonathantownley.bugger.dao;
+package com.jonathantownley.bugger.dao.database;
 
+import com.jonathantownley.bugger.model.Bug;
+import com.jonathantownley.bugger.model.Note;
 import com.jonathantownley.bugger.model.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Repository
-public class ProductDao extends DAO {
+public class BugDao extends DAO {
 
     @Autowired
     private Map<String, SessionFactory> sessionFactories;
 
     @Override
-    public List<Product> findAll(String repoName) {
+    public List<Bug> findAll(String repoName) {
         // Open session
         Session session = sessionFactories.get(repoName).openSession();
 
         // Do stuff
-        List<Product> products = session.createQuery("select n from Product n").getResultList();
+        List<Bug> bugs = session.createQuery("select s from Bug s").getResultList();
 
         // Close session
         session.close();
-        return products;
+        return bugs;
     }
 
     @Override
-    public Product findById(String repoName, Long id) {
+    public Bug findById(String repoName, Long id) {
         // Open session
         Session session = sessionFactories.get(repoName).openSession();
 
         // Do stuff
-        Product product = session.get(Product.class, id);
+        Bug bug = session.get(Bug.class, id);
 
         // Close session
         session.close();
-        return product;
+        return bug;
     }
 }

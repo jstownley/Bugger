@@ -1,30 +1,25 @@
 package com.jonathantownley.bugger.controller;
 
 import com.jonathantownley.bugger.Bugger;
-import com.jonathantownley.bugger.config.Preferences;
 import com.jonathantownley.bugger.model.Bug;
 import com.jonathantownley.bugger.service.BugService;
+import com.jonathantownley.bugger.service.PreferenceService;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 @Controller
@@ -35,6 +30,10 @@ public class Home {
 
     @Autowired
     private List<String> repositoryNames;
+
+    @Autowired
+    private PreferenceService preferenceService;
+    
 
     @FXML private MenuButton optsButton;
     @FXML private MenuItem prefOpts;
@@ -50,21 +49,14 @@ public class Home {
     @FXML private TableColumn<TableBug, String> statusCol;
 
     private Set<String> bugStrings;
-
     private ObservableList<TableBug> allBugs = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         // Get all the bugs from all repos
-        for (String repoName : repositoryNames) {
-            List<Bug> theseBugs = bugService.findAll(repoName);
-            for (Bug bug : theseBugs) {
-                TableBug tb = new TableBug(bug);
-                allBugs.add(tb);
-            }
-        }
+        formBugTableData();
 
-        // Add bugs to the TableView
+        // Set columns and data for the bug table
         repoCol.setCellValueFactory(cellData -> cellData.getValue().repoNameProperty());
         bugNumCol.setCellValueFactory(cellData -> cellData.getValue().bugNumProperty().asObject());
         dateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
@@ -76,34 +68,48 @@ public class Home {
 
         bugTable.getItems().setAll(allBugs);
 
-        // Set the menu button options' actions
+        // Set the menu button options' action
         prefOpts.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                showPreferences();
+                Bugger.prefStage.showAndWait();
+                reformBugTableData();
             }
         });
 
 
     }
 
-    private void showPreferences() {
-//        try {
-//            Parent prefsRoot = null;
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Preferences.fxml"));
-////            fxmlLoader.setController(Prefs.class);
-//            prefsRoot = fxmlLoader.load();
-            Stage prefStage = new Stage();
-            prefStage.setScene(new Scene(Bugger.prefRoot, 250, 202));
-            prefStage.setResizable(false);
-            prefStage.show();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    private void reformBugTableData() {
+        bugTable.getItems().clear();
+        allBugs.clear();
+        formBugTableData();
+        bugTable.getItems().addAll(allBugs);
     }
 
+    private void formBugTableData() {
+        for (String repoName : repositoryNames) {
+            List<Bug> theseBugs = bugService.findAll(repoName);
+            for (Bug bug : theseBugs) {
+                // Don't add those bugs that we don't want to see
+                if (bug.getStatus().equalsIgnoreCase("closed") &&
+                    !preferenceService.getShowClosed()) {
+                    continue;
+                }
+                if (bug.getStatus().equalsIgnoreCase("rejected") &&
+                    !preferenceService.getShowRejected()) {
+                    continue;
+                }
+                if (bug.getStatus().equalsIgnoreCase("duplicate") &&
+                    !preferenceService.getShowDuplicates()) {
+                    continue;
+                }
+                TableBug tb = new TableBug(bug);
+                allBugs.add(tb);
+            }
+        }
+    }
 
 
     // Private class for formatting bugs into table data

@@ -1,11 +1,9 @@
 package com.jonathantownley.bugger.service;
 
-import com.jonathantownley.bugger.dao.BugDao;
+import com.jonathantownley.bugger.dao.database.BugDao;
 import com.jonathantownley.bugger.model.Bug;
 import com.jonathantownley.bugger.model.Note;
 import com.jonathantownley.bugger.model.Product;
-import com.jonathantownley.bugger.model.Repository;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

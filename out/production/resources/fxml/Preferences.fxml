@@ -15,7 +15,7 @@
         xmlns="http://javafx.com/javafx/8"
         stylesheets="./src/main/resources/css/main.css"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="com.jonathantownley.bugger.controller.Prefs"
+        fx:controller="com.jonathantownley.bugger.controller.Preferences"
         fx:id="container">
     <children>
         <HBox>
@@ -26,5 +26,11 @@
         <CheckBox fx:id="showClosed" text="Show Closed Bugs" />
         <CheckBox fx:id="showRejected" text="Show Rejected Bugs" />
         <CheckBox fx:id="showDuplicates" text="Show Duplicate Bugs" />
+        <HBox>
+            <children>
+                <Button fx:id="saveButton" text="Save" />
+                <Button fx:id="cancelButton" text="Cancel" />
+            </children>
+        </HBox>
     </children>
 </VBox>
