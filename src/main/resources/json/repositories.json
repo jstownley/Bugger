@@ -1,14 +1,16 @@
-[
-  {
-    "repository": {
+{
+  "repository": [
+    {
       "name": "Test Repo 1",
       "databaseFileLocation": "./data/testRepo1/testRepo1"
-    }
-  },
-  {
-    "repository": {
+    },
+    {
       "name": "Test Repo 2",
       "databaseFileLocation": "./data/testRepo2/testRepo2"
+    },
+    {
+      "name": "Test Repo 3",
+      "databaseFileLocation": "/Users/jonathanTownley/IdeaProjects/Bugger/data/testRepo3/Test Repo 3"
     }
-  }
-]
+  ]
+}

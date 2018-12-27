@@ -3,19 +3,18 @@ package com.jonathantownley.bugger.controller;
 import com.jonathantownley.bugger.Bugger;
 import com.jonathantownley.bugger.model.Bug;
 import com.jonathantownley.bugger.service.BugService;
-import com.jonathantownley.bugger.service.PreferenceService;
+import com.jonathantownley.bugger.service.RepositoryService;
+import com.jonathantownley.bugger.service.SettingsService;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -29,13 +28,14 @@ public class Home {
     private BugService bugService;
 
     @Autowired
-    private List<String> repositoryNames;
+    private RepositoryService repositoryService;
 
     @Autowired
-    private PreferenceService preferenceService;
-    
+    private SettingsService settingsService;
+
 
     @FXML private MenuButton optsButton;
+    @FXML private MenuItem repoOpts;
     @FXML private MenuItem prefOpts;
 
     @FXML private TableView<TableBug> bugTable;
@@ -48,7 +48,6 @@ public class Home {
     @FXML private TableColumn<TableBug, String> severityCol;
     @FXML private TableColumn<TableBug, String> statusCol;
 
-    private Set<String> bugStrings;
     private ObservableList<TableBug> allBugs = FXCollections.observableArrayList();
 
     @FXML
@@ -69,6 +68,15 @@ public class Home {
         bugTable.getItems().setAll(allBugs);
 
         // Set the menu button options' action
+        repoOpts.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                Bugger.repoDetailStage.showAndWait();
+                reformBugTableData();
+            }
+        });
+
         prefOpts.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -89,20 +97,20 @@ public class Home {
     }
 
     private void formBugTableData() {
-        for (String repoName : repositoryNames) {
+        for (String repoName : repositoryService.getRepositoryNames()) {
             List<Bug> theseBugs = bugService.findAll(repoName);
             for (Bug bug : theseBugs) {
                 // Don't add those bugs that we don't want to see
                 if (bug.getStatus().equalsIgnoreCase("closed") &&
-                    !preferenceService.getShowClosed()) {
+                    !settingsService.getShowClosed()) {
                     continue;
                 }
                 if (bug.getStatus().equalsIgnoreCase("rejected") &&
-                    !preferenceService.getShowRejected()) {
+                    !settingsService.getShowRejected()) {
                     continue;
                 }
                 if (bug.getStatus().equalsIgnoreCase("duplicate") &&
-                    !preferenceService.getShowDuplicates()) {
+                    !settingsService.getShowDuplicates()) {
                     continue;
                 }
                 TableBug tb = new TableBug(bug);

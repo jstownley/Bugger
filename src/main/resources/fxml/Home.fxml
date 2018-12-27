@@ -24,6 +24,7 @@
             <Button fx:id="addBugButton" mnemonicParsing="false" text="Button" />
             <MenuButton fx:id="optsButton" mnemonicParsing="false" text="Settings" >
                <items>
+                  <MenuItem fx:id="repoOpts" text="Repositories"/>
                   <MenuItem fx:id="prefOpts" text="Preferences"/>
                </items>
             </MenuButton>

@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 public class Repository {
 
     private String name;
-    private String description;
     private String databaseFileLocation;
 
     public Repository(String name, String databaseFileLocation) {
@@ -19,14 +18,6 @@ public class Repository {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getDatabaseFileLocation() {

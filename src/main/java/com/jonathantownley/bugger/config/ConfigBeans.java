@@ -1,6 +1,7 @@
 package com.jonathantownley.bugger.config;
 
 import com.jonathantownley.bugger.model.Repository;
+import com.jonathantownley.bugger.service.RepositoryService;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.json.simple.JSONArray;
@@ -20,12 +21,17 @@ import java.io.*;
 import java.util.*;
 
 @Configuration
+@ComponentScan(basePackages = "com.jonathantownley.bugger")
 public class ConfigBeans {
+
+    @Autowired
+    private RepositoryService repositoryService;
 
     @Bean
     @Lazy(value = true)
-    public Map<String, SessionFactory> sessionFactory(List<Repository> repositories) {
+    public Map<String, SessionFactory> sessionFactory() {
         Map<String, SessionFactory> sessionFactories = new TreeMap<>();
+        List<Repository> repositories = repositoryService.getRepositories();
 
         for (int rr=0; rr<repositories.size(); rr++) {
             org.hibernate.cfg.Configuration cfg = new org.hibernate.cfg.Configuration();
@@ -37,39 +43,5 @@ public class ConfigBeans {
         }
 
         return sessionFactories;
-    }
-
-    @Bean
-    public List<Repository> loadRepositories() {
-        List<Repository> repositories = new ArrayList<>();
-        JSONParser jsonParser = new JSONParser();
-
-        try(FileReader reader = new FileReader("./src/main/resources/json/repositories.json")) {
-            JSONArray jsonRepos = (JSONArray) jsonParser.parse(reader);
-
-
-            for (Object repo : jsonRepos) {
-                JSONObject repoObject = (JSONObject) ((JSONObject) repo).get("repository");
-                String name = repoObject.get("name").toString();
-                String databaseFileLocation = repoObject.get("databaseFileLocation").toString();
-
-                repositories.add(new Repository(name, databaseFileLocation));
-            }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-
-        return repositories;
-    }
-
-    @Bean
-    public List<String> repositoryNameList(List<Repository> repositories) {
-        List<String> repoNames = new ArrayList<>();
-
-        for (Repository repository : repositories) {
-            repoNames.add(repository.getName());
-        }
-
-        return  repoNames;
     }
 }

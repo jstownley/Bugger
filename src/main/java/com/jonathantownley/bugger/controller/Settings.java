@@ -1,9 +1,9 @@
 package com.jonathantownley.bugger.controller;
 
 import com.jonathantownley.bugger.model.Bug;
-import com.jonathantownley.bugger.model.Repository;
 import com.jonathantownley.bugger.service.BugService;
-import com.jonathantownley.bugger.service.PreferenceService;
+import com.jonathantownley.bugger.service.RepositoryService;
+import com.jonathantownley.bugger.service.SettingsService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,16 +17,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
-public class Preferences {
+public class Settings {
 
     @Autowired
-    private PreferenceService preferenceService;
+    private SettingsService settingsService;
 
     @Autowired
     private BugService bugService;
 
     @Autowired
-    private List<String> repositoryNames;
+    private RepositoryService repositoryService;
 
     @FXML private TextField authorName;
     @FXML private CheckBox showClosed;
@@ -38,10 +38,10 @@ public class Preferences {
     @FXML
     private void initialize() {
         // Initialize the values displayed
-        authorName.setText(preferenceService.getAuthor());
-        showClosed.setSelected(preferenceService.getShowClosed());
-        showRejected.setSelected(preferenceService.getShowRejected());
-        showDuplicates.setSelected(preferenceService.getShowDuplicates());
+        authorName.setText(settingsService.getAuthor());
+        showClosed.setSelected(settingsService.getShowClosed());
+        showRejected.setSelected(settingsService.getShowRejected());
+        showDuplicates.setSelected(settingsService.getShowDuplicates());
 
         // Set event listeners
         cancelButton.setCancelButton(true);
@@ -57,16 +57,16 @@ public class Preferences {
             @Override
             public void handle(ActionEvent event) {
                 // Set checkbox preferences
-                preferenceService.setShowClosed(showClosed.isSelected());
-                preferenceService.setShowClosed(showClosed.isSelected());
-                preferenceService.setShowClosed(showClosed.isSelected());
+                settingsService.setShowClosed(showClosed.isSelected());
+                settingsService.setShowClosed(showClosed.isSelected());
+                settingsService.setShowClosed(showClosed.isSelected());
 
                 // Check name change and ask the user whether to change name on all bugs
                 String newName = authorName.getCharacters().toString();
-                String oldName = preferenceService.getAuthor();
+                String oldName = settingsService.getAuthor();
                 if (!newName.equals(oldName)) {
                     // Launch the dialog
-                    preferenceService.setAuthor(newName);
+                    settingsService.setAuthor(newName);
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Update bug authors?");
                     alert.setHeaderText("");
@@ -88,7 +88,7 @@ public class Preferences {
 
     private void changeBugAuthors(String oldName, String newName) {
         // For each repo, see if there are any bugs under the old author...
-        for (String repoName : repositoryNames) {
+        for (String repoName : repositoryService.getRepositoryNames()) {
             List<Bug> theseBugs = bugService.findAll(repoName).stream()
                 .filter(b -> b.getAuthor().equals(oldName))
                 .collect(Collectors.toList());

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        prefHeight="400.0"
+        prefWidth="600.0"
+        xmlns="http://javafx.com/javafx/8"
+        stylesheets="./src/main/resources/css/main.css"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.jonathantownley.bugger.controller.NewRepository"
+        fx:id="container">
+   <children>
+      <HBox alignment="CENTER" prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <Label text="Repository name: " /><TextField fx:id="newRepoName" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <Label text="Repository location: " /><Label fx:id="newRepoLocation" text="" /><Button fx:id="repoBrowseButton" text="Browse" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="saveButton" text="Save" />
+            <Button fx:id="cancelButton" text="Cancel" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
